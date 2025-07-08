@@ -1,27 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lucas Mattioli</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <main>
-    <img src="img/portrait.jpg" alt="Lucas Mattioli" class="profile-pic">
+  <header>
+    <img src="img/portrait.jpg" alt="Lucas Mattioli" class="profile-img" />
     <h1>Lucas Mattioli</h1>
-
-    <div class="links">
-      <a href="mailto:mattioli.lucas@gmail.com" title="Email">
-        <img src="img/gmail.svg" alt="Email">
-      </a>
-      <a href="https://scholar.google.com/citations?user=Rso1Tu4AAAAJ&hl=en&oi=ao" title="Google Scholar">
-        <img src="img/scholar.svg" alt="Scholar">
-      </a>
-      <a href="https://www.linkedin.com/in/lucas-mattioli/" title="LinkedIn">
-        <img src="img/linkedin.svg" alt="LinkedIn">
-      </a>
+    <p class="subtitle">Looking for PhD in AI</p>
+    <div class="social-links">
+      <a href="mailto:mattioli.lucas@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://scholar.google.com/citations?user=Rso1Tu4AAAAJ&hl=en&oi=ao" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+      <a href="https://www.linkedin.com/in/lucas-mattioli/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
-  </main>
+  </header>
+
+  <section class="card">
+    <h2>About Me</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+  </section>
+
+  <section class="card">
+    <h2>My Thesis</h2>
+    <h3>Title of the thesis (Placeholder)</h3>
+    <ul>
+      <li>Goal 1 (Placeholder)</li>
+      <li>Goal 2 (Placeholder)</li>
+      <li>Goal 3 (Placeholder)</li>
+    </ul>
+    <img src="img/thesis_image.png" alt="Thesis illustration" class="thumbnail" />
+    <p>
+      <a href="#">PDF</a> |
+      <a href="#">Code</a>
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Publications during my PhD</h2>
+
+    <div class="publication">
+      <h3>Publication Title (Placeholder)</h3>
+      <p class="authors">Author1, Author2, <strong>Lucas Mattioli</strong></p>
+      <p class="venue">Conference Name, 202X</p>
+      <p class="summary">Short summary of the paper goes here. Lorem ipsum dolor sit amet.</p>
+      <img src="img/pub1_thumb.png" alt="Thumbnail" class="thumbnail" />
+      <p><a href="#">PDF</a> | <a href="#">Code</a></p>
+    </div>
+
+    <!-- Add more publications as needed -->
+
+  </section>
+
+  <section class="card">
+    <h2>Publications before my PhD</h2>
+    <div class="publication">
+      <h3>Older Publication Title (Placeholder)</h3>
+      <p class="authors">Author1, Author2, <strong>Lucas Mattioli</strong></p>
+      <p class="venue">Journal Name, 20XX</p>
+      <p class="summary">Summary of this older work goes here.</p>
+      <img src="img/pub2_thumb.png" alt="Thumbnail" class="thumbnail" />
+      <p><a href="#">PDF</a> | <a href="#">Code</a></p>
+    </div>
+  </section>
 </body>
 </html>
