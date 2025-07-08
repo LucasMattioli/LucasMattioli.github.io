@@ -30,3 +30,24 @@ h1 {
   font-size: 1.8em;
   margin: 0;
 }
+
+
+
+.links {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.links img {
+  width: 28px;
+  height: 28px;
+  filter: grayscale(100%);
+  transition: filter 0.2s;
+}
+
+.links img:hover {
+  filter: grayscale(0%);
+}
+
