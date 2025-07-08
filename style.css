@@ -1,53 +1,96 @@
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
-}
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-.profile-pic {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  border: 4px solid #007BFF; /* bleu */
-  object-fit: cover;
-  margin-bottom: 20px;
-}
+    .profile-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid #007BFF;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
 
-h1 {
-  font-size: 1.8em;
-  margin: 0;
-}
+    h1 {
+      margin: 0.2rem 0;
+      font-size: 1.8rem;
+    }
 
+    .subtitle {
+      font-size: 1rem;
+      color: #666;
+    }
 
+    .social-links {
+      margin-top: 0.8rem;
+    }
 
-.links {
-  margin-top: 20px;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
+    .social-links a {
+      color: #007BFF;
+      margin: 0 0.6rem;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
 
-.links img {
-  width: 28px;
-  height: 28px;
-  filter: grayscale(100%);
-  transition: filter 0.2s;
-}
+    .card {
+      background-color: #fff;
+      margin: 2rem auto;
+      max-width: 800px;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
 
-.links img:hover {
-  filter: grayscale(0%);
-}
+    .card h2 {
+      margin-top: 0;
+      color: #007BFF;
+    }
 
+    .card ul {
+      padding-left: 1.2rem;
+    }
+
+    .thumbnail {
+      max-width: 100%;
+      height: auto;
+      margin: 1rem 0;
+      border-radius: 5px;
+    }
+
+    .publication {
+      margin-bottom: 2rem;
+    }
+
+    .authors, .venue, .summary {
+      margin: 0.3rem 0;
+    }
+
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .profile-img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
