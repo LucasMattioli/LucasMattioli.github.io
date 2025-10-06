@@ -2,143 +2,355 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lucas Mattioli</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lucas Mattioli — PhD in AI</title>
+  <meta name="description" content="Lucas Mattioli — PhD candidate in Trustworthy AI and Foundation Models. Publications, thesis, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-</head>
-<body>
-  <header>
-    <img src="img/portrait.jpg" alt="Lucas Mattioli" class="profile-pic" />
-    <h1>Lucas Mattioli</h1>
-    <p class="subtitle">Currently doing my PhD in AI.</p>
-    <div class="social-links">
-      <a href="mailto:mattioli.lucas@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-      <a href="https://scholar.google.com/citations?user=Rso1Tu4AAAAJ&hl=en&oi=ao" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-      <a href="https://www.linkedin.com/in/lucas-mattioli/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    </div>
-  </header>
-
-  <section class="card">
-    <h2>About Me</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-  </section>
-
-  <section class="card">
-    <h2>My Thesis</h2>
-    <h3>Ensuring Frugal Adaptation of Foundation Models for Computer Vision Tasks.</h3>
-    <ul>
-      <li>Goal 1 (Placeholder)</li>
-      <li>Goal 2 (Placeholder)</li>
-      <li>Goal 3 (Placeholder)</li>
-    </ul>
-    <img src="img/thesis_image.png" alt="Thesis illustration" class="thumbnail" />
-    <p>
-      <a href="#">PDF</a> |
-      <a href="#">Code</a>
-    </p>
-  </section>
-
-  <section class="card">
-    <h2>Publications during my PhD</h2>
-
-    <div class="publication">
-      <h3>Publication Title (Placeholder)</h3>
-      <p class="authors">Author1, Author2, <strong>Lucas Mattioli</strong></p>
-      <p class="venue">Conference Name, 202X</p>
-      <p class="summary">Short summary of the paper goes here. Lorem ipsum dolor sit amet.</p>
-      <img src="img/pub1_thumb.png" alt="Thumbnail" class="thumbnail" />
-      <p><a href="#">PDF</a> | <a href="#">Code</a></p>
-    </div>
-  </section>
-
+  <meta property="og:title" content="Lucas Mattioli — PhD in AI" />
+  <meta property="og:description" content="Trustworthy AI • Foundation Models • Vision under constrained data" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="img/portrait.jpg" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="icon" href="img/favicon.png" />
   
-  <section>
-    <h2>Publications before my PhD</h2>
-      <div class="card publication">
-        <div class="card-content">
-          <div class="text">
-            <h3>Data Curation Matters: Model Collapse and Spurious Shift Performance Prediction from Training on Uncurated Text Embeddings</h3>
-            <p><strong>Auteurs :</strong> L Mattioli, YA Hadichou, S Chaouche, M Gonzalez</p>
-            <p><strong>Conférence :</strong> Workshop DataWorld ICML 2025</p>
-            <p>In this paper we observe that training models on uncurated Text Embeddings (TEs) derived from raw tabular data can lead to a severe failure mode known as model collapse, where predictions converge to a single class regardless of input.</p>
-            <p>
-              <a href="https://hal.science/hal-04731376/document">📄 PDF</a>
-            </p>
-          </div>
-          <img class="pub-image" src="img/DCM.png" alt="Illustration publication">
+  <style>
+    :root{
+      --bg: #0b0e14;
+      --bg-soft:#0f1420;
+      --text: #e5e7eb;
+      --muted:#94a3b8;
+      --card:#111827;
+      --brand:#0ea5e9; /* sky-500 */
+      --accent:#22d3ee; /* cyan-400 */
+      --ring: 0 0 0 3px rgba(14,165,233,.25);
+      --radius: 18px;
+      --shadow: 0 1px 2px rgba(0,0,0,.12), 0 8px 30px rgba(0,0,0,.28);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(180deg,var(--bg) 0%, #0b1220 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Layout */
+    .wrap{max-width:1000px;margin:0 auto;padding:32px 20px 80px}
+    header.hero{
+      display:grid;grid-template-columns:96px 1fr auto;gap:20px;align-items:center;margin-bottom:28px;
+    }
+    .profile-pic{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+    .title h1{font-size:clamp(26px,3vw,34px);margin:0;font-weight:700;letter-spacing:.2px}
+    .subtitle{margin:6px 0 0;font-size:15px;color:var(--muted)}
+
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:#0b1624;color:white;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn i{font-size:14px}
+    .ghost{background:transparent}
+
+    .toolbar{display:flex;gap:10px;align-items:center}
+    .theme-toggle{width:40px;height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;background:transparent;color:var(--text);cursor:pointer}
+
+    /* Cards */
+    .grid{display:grid;grid-template-columns:1fr;gap:18px}
+    @media (min-width:860px){
+      .grid{grid-template-columns: 1.15fr .85fr}
+    }
+    .card{background:linear-gradient(180deg,var(--card),#0c1322);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+    .card h2{margin:0 0 12px;font-size:18px;letter-spacing:.3px}
+    .card p{color:#cbd5e1;line-height:1.65}
+
+    .tag{display:inline-block;padding:4px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:12px;color:#cfe9f8;background:#0a1a2a;margin-right:6px}
+
+    /* Publications */
+    .pub-list{display:grid;grid-template-columns:1fr;gap:14px}
+    .publication{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:14px}
+    .publication img{width:96px;height:96px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
+    .publication h3{margin:0 0 6px;font-size:16px}
+    .meta{font-size:13px;color:var(--muted);margin-bottom:8px}
+    .links{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{font-size:12px;border:1px solid rgba(255,255,255,.16);padding:6px 10px;border-radius:999px;background:#0b1828}
+
+    /* Thesis block */
+    .thesis-hero{display:grid;grid-template-columns:1fr;gap:16px;align-items:center}
+    @media (min-width:740px){ .thesis-hero{grid-template-columns: 1fr 220px} }
+    .thumb{width:100%;max-height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
+
+    /* Footer */
+    footer{margin-top:40px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* Light mode (auto via prefers-color-scheme, switchable by JS) */
+    @media (prefers-color-scheme: light){
+      :root{--bg:#f6f8fb;--bg-soft:#ffffff;--text:#0f172a;--muted:#475569;--card:#ffffff}
+      body{background: linear-gradient(180deg,#f6f8fb 0%, #eef2f7 100%)}
+      .btn{background:#eef3fb;color:#0f172a;border-color:#e2e8f0}
+      .publication{background:#f8fafc;border-color:#e2e8f0}
+      .chip{background:#eef3fb;border-color:#dbeafe}
+    }
+  </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Lucas Mattioli",
+    "image": "img/portrait.jpg",
+    "jobTitle": "PhD Candidate in AI",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "ONERA / IRT SystemX (Confiance.ai)"
+    },
+    "sameAs": [
+      "mailto:mattioli.lucas@gmail.com",
+      "https://scholar.google.com/citations?user=Rso1Tu4AAAAJ",
+      "https://www.linkedin.com/in/lucas-mattioli/"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- HERO -->
+    <header class="hero" aria-labelledby="site-title">
+      <img src="img/portrait.jpg" alt="Portrait of Lucas Mattioli" class="profile-pic" />
+      <div class="title">
+        <h1 id="site-title">Lucas Mattioli</h1>
+        <p class="subtitle">PhD Candidate — Trustworthy AI • Foundation Models • Vision under constrained data</p>
+        <div class="actions" role="group" aria-label="Primary actions">
+          <a class="btn" href="mailto:mattioli.lucas@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+          <a class="btn" href="https://scholar.google.com/citations?user=Rso1Tu4AAAAJ&hl=en&oi=ao"><i class="fa-solid fa-graduation-cap"></i> Scholar</a>
+          <a class="btn" href="https://www.linkedin.com/in/lucas-mattioli/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          <a class="btn ghost" href="#publications"><i class="fa-solid fa-file-lines"></i> Publications</a>
         </div>
       </div>
-      <div class="card publication">
-        <div class="card-content">
-          <div class="text">
-            <h3>An end-to-end method for operationalizing trustwothiness in AI-based critical systems</h3>
-            <p><strong>Auteurs :</strong> K Quintero, L Mattioli, H Sohier, J Mattioli</p>
-            <p><strong>Conférence :</strong> PESARO 2025</p>
-            <p>This work presents an end-to-end method formalized during the Confiance.ai research program for the engineering of trustworthy ML-based systems.</p>
-            <p>
-              <a href="https://hal.science/hal-04731376/document">📄 PDF</a>
-            </p>
-          </div>
-          <img class="pub-image" src="img/E2E.png" alt="Illustration publication">
-        </div>
+      <div class="toolbar">
+        <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
       </div>
-      <div class="card publication">
-        <div class="card-content">
-          <div class="text">
-            <h3>Leveraging Tropical Algebra to Assess Trustworthy AI</h3>
-            <p><strong>Auteurs :</strong> J Mattioli, M Gonzalez, L Mattioli, K Quintero, H Sohier</p>
-            <p><strong>Conférence :</strong> AAAI 2024</p>
-            <p>We propose an innovative solution based on a Multi-Criteria Decision Aiding (MCDA) methodology, using Tropical Algebra.</p>
-            <p>
-              <a href="https://hal.science/hal-04731376/document">📄 PDF</a>
-            </p>
-          </div>
-          <img class="pub-image" src="img/tropical_algebra.png" alt="Illustration publication">
+    </header>
+
+    <main class="grid">
+      <!-- Left column -->
+      <section class="card" aria-labelledby="about">
+        <h2 id="about">About</h2>
+        <p>
+          I am a PhD candidate co‑supervised by Stéphane Herbin (ONERA) and Faouzi Adjed (IRT SystemX) within the Confiance.ai framework. My research focuses on making
+          multimodal foundation models (especially Vision–Language Models) reliable under tight data constraints through PEFT (LoRA/adapters), prompt learning,
+          in‑context learning, and distillation. I care about practical trustworthiness: calibration, distribution shifts, and KPI‑oriented evaluation.
+        </p>
+        <div aria-label="Keywords" style="margin-top:8px">
+          <span class="tag">Trustworthy AI</span>
+          <span class="tag">Foundation Models</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">PEFT / LoRA</span>
+          <span class="tag">Prompt Learning</span>
         </div>
-      </div>
-      <div class="card publication">
-        <div class="card-content">
-          <div class="text">
-            <h3>A Black-Box Watermarking Modulation for Semantic Segmentation Models</h3>
-            <p><strong>Auteurs :</strong> M Lansari, L Mattioli, B Addad, PM Raffi, M Gonzalez, K Kapusta</p>
-            <p><strong>Conférence :</strong> Workshop on RegML at NeuRIPS 2024</p>
-            <p>In this paper, we propose a novel black-box watermarking technique specifically designed for semantic segmentation.</p>
-            <p>
-              <a href="https://hal.science/hal-04731376/document">📄 PDF</a>
-            </p>
+      </section>
+
+      <section class="card" aria-labelledby="thesis">
+        <h2 id="thesis">Thesis</h2>
+        <div class="thesis-hero">
+          <div>
+            <h3 style="margin:0 0 8px">Ensuring Frugal Adaptation of Foundation Models for Computer Vision Tasks</h3>
+            <ul style="margin:0 0 10px 18px">
+              <li>Robust PEFT strategies under distribution shifts</li>
+              <li>Minimal‑data adaptation with in‑context learning</li>
+              <li>Trust metrics: calibration, completeness, timeliness</li>
+            </ul>
+            <div class="links">
+              <a class="chip" href="#">PDF</a>
+              <a class="chip" href="#">Code</a>
+            </div>
           </div>
-          <img class="pub-image" src="img/WM_segmentation.png" alt="Illustration publication">
+          <img class="thumb" src="img/thesis_image.png" alt="Thesis illustration" />
         </div>
-      </div>
-      <div class="card publication">
-        <div class="card-content">
-          <div class="text">
-            <h3>A Black-Box Watermarking Modulation for Object Detection Models</h3>
-            <p><strong>Auteurs :</strong> Mohammed Lansari, Lucas Mattioli, Boussad Addad, Paul-Marie Raffi, Katarzyna Kapusta, Martin Gonzalez, Mohamed Ibn Khedher</p>
-            <p><strong>Conférence :</strong> AAAI 2024</p>
-            <p>In this paper, we introduce a novel black-box watermarking method for object detection models.</p>
-            <p>
-              <a href="https://hal.science/hal-04726701v1/file/A_Black_Box_Watermarking_Modulation_for_Object_Detection_Models-2.pdf">📄 PDF</a>
-            </p>
-          </div>
-          <img class="pub-image" src="img/WM_detection.png" alt="Illustration publication">
+      </section>
+
+      <!-- Publications During PhD -->
+      <section class="card" id="publications" aria-labelledby="pub-phd">
+        <h2 id="pub-phd">Publications during my PhD</h2>
+        <div class="pub-list">
+          <article class="publication" data-year="202X" data-type="conf">
+            <img src="img/pub1_thumb.png" alt="Thumbnail for placeholder publication" />
+            <div>
+              <h3>Publication Title (Placeholder)</h3>
+              <div class="meta">Author1, Author2, <strong>Lucas Mattioli</strong> · Conference Name, 202X</div>
+              <p class="summary">Short summary of the paper goes here. Replace with the actual abstract snippet.</p>
+              <div class="links">
+                <a class="chip" href="#">PDF</a>
+                <a class="chip" href="#">Code</a>
+              </div>
+            </div>
+          </article>
         </div>
-      </div>
-      <div class="card publication">
-        <div class="card-content">
-          <div class="text">
-            <h3>Protecting ownership rights of ML models using watermarking in the light of adversarial attacks</h3>
-            <p><strong>Auteurs :</strong> Katarzyna Kapusta, Lucas Mattioli, Boussad Addad, Mohammed Lansari</p>
-            <p><strong>Journal :</strong> AI and Ethics, 2024</p>
-            <p>In this paper, we present and analyze two novel—and seemingly distant—research trends in Machine Learning: ML watermarking and adversarial patches.</p>
-            <p>
-              <a href="https://hal.science/hal-04264033/document">📄 PDF</a>
-            </p>
-          </div>
-          <img class="pub-image zoomable" src="img/WM_classification.png" alt="Illustration publication">
+      </section>
+
+      <!-- Publications Before PhD -->
+      <section class="card" aria-labelledby="pub-before">
+        <h2 id="pub-before">Publications before my PhD</h2>
+        <div class="links" style="margin-bottom:10px">
+          <button class="chip" data-filter="all">All</button>
+          <button class="chip" data-filter="2025">2025</button>
+          <button class="chip" data-filter="2024">2024</button>
+          <button class="chip" data-filter="conf">Conferences</button>
+          <button class="chip" data-filter="journal">Journals</button>
         </div>
-      </div>
-  </section>
+        <div class="pub-list" id="pubList">
+          <!-- DCM - ICML 2025 -->
+          <article class="publication" data-year="2025" data-type="conf">
+            <img src="img/DCM.png" alt="Data Curation Matters cover" />
+            <div>
+              <h3>Data Curation Matters: Model Collapse and Spurious Shift Performance Prediction from Training on Uncurated Text Embeddings</h3>
+              <div class="meta">L. Mattioli, Y.A. Hadichou, S. Chaouche, M. Gonzalez · DataWorld @ ICML 2025 (Workshop)</div>
+              <p>Training on uncurated text embeddings derived from raw tabular data can trigger model collapse leading to degenerate single‑class predictions; we study detection and metrics.</p>
+              <div class="links">
+                <a class="chip" href="https://hal.science/hal-04731376/document">PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PESARO 2025 -->
+          <article class="publication" data-year="2025" data-type="conf">
+            <img src="img/E2E.png" alt="End‑to‑End Trustworthiness cover" />
+            <div>
+              <h3>An End‑to‑End Method for Operationalizing Trustworthiness in AI‑based Critical Systems</h3>
+              <div class="meta">K. Quintero, L. Mattioli, H. Sohier, J. Mattioli · PESARO 2025</div>
+              <p>End‑to‑end engineering method formalized within Confiance.ai for trustworthy ML‑based systems.</p>
+              <div class="links">
+                <a class="chip" href="https://hal.science/hal-04731376/document">PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- AAAI 2024 Tropical Algebra -->
+          <article class="publication" data-year="2024" data-type="conf">
+            <img src="img/tropical_algebra.png" alt="Tropical Algebra cover" />
+            <div>
+              <h3>Leveraging Tropical Algebra to Assess Trustworthy AI</h3>
+              <div class="meta">J. Mattioli, M. Gonzalez, L. Mattioli, K. Quintero, H. Sohier · AAAI 2024</div>
+              <p>MCDA methodology using tropical algebra for trustworthiness assessment.</p>
+              <div class="links">
+                <a class="chip" href="https://hal.science/hal-04731376/document">PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- NeurIPS 2024 RegML (Segmentation WM) -->
+          <article class="publication" data-year="2024" data-type="conf">
+            <img src="img/WM_segmentation.png" alt="Segmentation watermarking cover" />
+            <div>
+              <h3>A Black‑Box Watermarking Modulation for Semantic Segmentation Models</h3>
+              <div class="meta">M. Lansari, L. Mattioli, B. Addad, P.-M. Raffi, M. Gonzalez, K. Kapusta · RegML @ NeurIPS 2024 (Workshop)</div>
+              <p>New black‑box watermarking technique tailored to semantic segmentation.</p>
+              <div class="links">
+                <a class="chip" href="https://hal.science/hal-04731376/document">PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- AAAI 2024 Detection WM -->
+          <article class="publication" data-year="2024" data-type="conf">
+            <img src="img/WM_detection.png" alt="Object detection watermarking cover" />
+            <div>
+              <h3>A Black‑Box Watermarking Modulation for Object Detection Models</h3>
+              <div class="meta">M. Lansari, <strong>L. Mattioli</strong>, B. Addad, P.-M. Raffi, K. Kapusta, M. Gonzalez, M. Ibn Khedher · AAAI 2024</div>
+              <p>Black‑box watermarking method for object detection models.</p>
+              <div class="links">
+                <a class="chip" href="https://hal.science/hal-04726701v1/file/A_Black_Box_Watermarking_Modulation_for_Object_Detection_Models-2.pdf">PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Journal 2024 -->
+          <article class="publication" data-year="2024" data-type="journal">
+            <img src="img/WM_classification.png" alt="Classification watermarking cover" />
+            <div>
+              <h3>Protecting Ownership Rights of ML Models Using Watermarking in the Light of Adversarial Attacks</h3>
+              <div class="meta">K. Kapusta, <strong>L. Mattioli</strong>, B. Addad, M. Lansari · AI and Ethics (Journal), 2024</div>
+              <p>Bridges ML watermarking and adversarial patches to analyze model ownership protection.</p>
+              <div class="links">
+                <a class="chip" href="https://hal.science/hal-04264033/document">PDF</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Right column: Contact / Quick links -->
+      <section class="card" aria-labelledby="contact">
+        <h2 id="contact">Contact</h2>
+        <p><i class="fa-solid fa-location-dot"></i> Paris, France</p>
+        <p><i class="fa-solid fa-envelope"></i> <a href="mailto:mattioli.lucas@gmail.com">mattioli.lucas@gmail.com</a></p>
+        <p><i class="fa-solid fa-globe"></i> <a href="https://scholar.google.com/citations?user=Rso1Tu4AAAAJ">Google Scholar</a></p>
+        <p><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/lucas-mattioli/">LinkedIn</a></p>
+      </section>
+
+      <section class="card" aria-labelledby="news">
+        <h2 id="news">News</h2>
+        <ul style="margin:0 0 0 18px">
+          <li><strong>Oct 2025:</strong> Starting PhD on trustworthy adaptation of VLMs at ONERA / IRT SystemX.</li>
+          <li><strong>Jul 2025:</strong> Presented DCM at ICML 2025 DataWorld workshop.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Lucas Mattioli · Built with accessible HTML + CSS · <a href="#" aria-label="Back to top">Back to top ↑</a>
+    </footer>
+  </div>
+
+  <script>
+    // Theme toggle (persist to localStorage)
+    const btn = document.getElementById('themeBtn');
+    const root = document.documentElement;
+    const stored = localStorage.getItem('theme');
+    if(stored === 'light') document.documentElement.classList.add('light');
+    btn.addEventListener('click', ()=>{
+      const isLight = document.documentElement.classList.toggle('light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+    // Apply light theme styles when .light is on root
+    const observer = new MutationObserver(()=>{
+      if(root.classList.contains('light')){
+        root.style.setProperty('--bg','#f6f8fb');
+        root.style.setProperty('--bg-soft','#ffffff');
+        root.style.setProperty('--text','#0f172a');
+        root.style.setProperty('--muted','#475569');
+        root.style.setProperty('--card','#ffffff');
+      } else {
+        root.style.removeProperty('--bg');
+        root.style.removeProperty('--bg-soft');
+        root.style.removeProperty('--text');
+        root.style.removeProperty('--muted');
+        root.style.removeProperty('--card');
+      }
+    });
+    observer.observe(root,{attributes:true,attributeFilter:['class']});
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple publication filtering
+    const pubList = document.getElementById('pubList');
+    document.querySelectorAll('[data-filter]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const f = btn.getAttribute('data-filter');
+        pubList.querySelectorAll('.publication').forEach(card=>{
+          const year = card.getAttribute('data-year');
+          const type = card.getAttribute('data-type');
+          const show = (f==='all') || (year===f) || (type===f);
+          card.style.display = show ? 'grid' : 'none';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
