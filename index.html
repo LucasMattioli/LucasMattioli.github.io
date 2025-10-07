@@ -66,6 +66,7 @@
     .card{background:linear-gradient(180deg,var(--card),#0c1322);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
     .card h2{margin:0 0 12px;font-size:18px;letter-spacing:.3px}
     .card p{color:#cbd5e1;line-height:1.65}
+    .about-blurb{color:#1e3a8a}
 
     .tag{display:inline-block;padding:4px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:12px;color:#cfe9f8;background:#0a1a2a;margin-right:6px}
 
@@ -140,12 +141,8 @@
     <main class="grid">
       <!-- Left column -->
       <section class="card" aria-labelledby="about">
-        <h2 id="about">About</h2>
-        <p>
-          I am a PhD candidate co‑supervised by Stéphane Herbin (ONERA) and Faouzi Adjed (IRT SystemX) within the Confiance.ai framework. My research focuses on making
-          multimodal foundation models (especially Vision–Language Models) reliable under tight data constraints through PEFT (LoRA/adapters), prompt learning,
-          in‑context learning, and distillation. I care about practical trustworthiness: calibration, distribution shifts, and KPI‑oriented evaluation.
-        </p>
+        <h2 id=\"about\">About<\/h2>
+        <p class=\"about-blurb\">I am a PhD candidate co‑supervised by Stéphane Herbin (ONERA) and Faouzi Adjed (IRT SystemX). My research focuses on making multimodal foundation models (especially Vision–Language Models) reliable under tight data constraints through PEFT (LoRA\/adapters), prompt learning, in‑context learning, and distillation.<\/p>
         <div aria-label="Keywords" style="margin-top:8px">
           <span class="tag">Trustworthy AI</span>
           <span class="tag">Foundation Models</span>
