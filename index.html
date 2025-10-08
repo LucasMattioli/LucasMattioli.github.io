@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,9 +23,9 @@
       --text: #e5e7eb;
       --muted:#94a3b8;
       --card:#111827;
-      --brand:#0ea5e9; /* sky-500 */
-      --accent:#22d3ee; /* cyan-400 */
-      --ring: 0 0 0 3px rgba(14,165,233,.25);
+      --brand:#133E87;
+      --accent:#608BC1;
+      --ring: 0 0 0 3px rgba(96,139,193,.35);
       --radius: 18px;
       --shadow: 0 1px 2px rgba(0,0,0,.12), 0 8px 30px rgba(0,0,0,.28);
     }
@@ -37,7 +37,7 @@
       color:var(--text);
       -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
     }
-    a{color:var(--accent); text-decoration:none}
+    a{color:var(--brand); text-decoration:none}
     a:hover{text-decoration:underline}
 
     /* Layout */
@@ -61,7 +61,7 @@
     @media (min-width:860px){
       .grid{grid-template-columns: 1.15fr .85fr}
     }
-    .card{background:linear-gradient(180deg,var(--card),#0c1322);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+    .card{background:var(--card);border:1px solid rgba(19,62,135,.18);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
     .card h2{margin:0 0 12px;font-size:18px;letter-spacing:.3px}
     .card p{color:#cbd5e1;line-height:1.7;font-size:16.5px}
     .card li{color:#cbd5e1;font-size:16px;line-height:1.7} 
@@ -89,7 +89,15 @@
 
     /* Light mode (auto via prefers-color-scheme, switchable by JS) */
     @media (prefers-color-scheme: light){
-      :root{--bg:#f6f8fb;--bg-soft:#ffffff;--text:#0f172a;--muted:#475569;--card:#ffffff}
+      :root{--bg:#F3F3E0;--bg-soft:#CBDCEB;--text:#133E87;--muted:#608BC1;--card:#CBDCEB}
+      body{background: linear-gradient(180deg,#F3F3E0 0%, #CBDCEB 100%)}
+      a{color:var(--brand)}
+      .btn{background:var(--brand);color:#F3F3E0;border-color:rgba(19,62,135,.25)}
+      .publication{background:#F3F3E0;border-color:rgba(19,62,135,.15)}
+      .chip,.tag{background:#CBDCEB;border-color:rgba(96,139,193,.35);color:#133E87}
+      .card{background:var(--card);border-color:rgba(19,62,135,.18)}
+      .about-blurb{color:#133E87}
+    }
       body{background: linear-gradient(180deg,#f6f8fb 0%, #eef2f7 100%)}
       .btn{background:#eef3fb;color:#0f172a;border-color:#e2e8f0}
       .publication{background:#f8fafc;border-color:#e2e8f0}
@@ -352,18 +360,22 @@
     // Apply light theme styles when .light is on root
     const observer = new MutationObserver(()=>{
       if(root.classList.contains('light')){
-        root.style.setProperty('--bg','#f6f8fb');
-        root.style.setProperty('--bg-soft','#ffffff');
-        root.style.setProperty('--text','#0f172a');
-        root.style.setProperty('--muted','#475569');
-        root.style.setProperty('--card','#ffffff');
-      } else {
-        root.style.removeProperty('--bg');
-        root.style.removeProperty('--bg-soft');
-        root.style.removeProperty('--text');
-        root.style.removeProperty('--muted');
-        root.style.removeProperty('--card');
-      }
+      root.style.setProperty('--bg','#F3F3E0');
+      root.style.setProperty('--bg-soft','#CBDCEB');
+      root.style.setProperty('--text','#133E87');
+      root.style.setProperty('--muted','#608BC1');
+      root.style.setProperty('--card','#CBDCEB');
+      root.style.setProperty('--brand','#133E87');
+      root.style.setProperty('--accent','#608BC1');
+    } else {
+      root.style.removeProperty('--bg');
+      root.style.removeProperty('--bg-soft');
+      root.style.removeProperty('--text');
+      root.style.removeProperty('--muted');
+      root.style.removeProperty('--card');
+      root.style.removeProperty('--brand');
+      root.style.removeProperty('--accent');
+    }
     });
     observer.observe(root,{attributes:true,attributeFilter:['class']});
 
