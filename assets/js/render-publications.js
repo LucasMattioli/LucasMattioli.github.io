@@ -1,8 +1,20 @@
 // render-publications.js: render publications and news from JSON
 async function loadJSON(path){
   const res = await fetch(path);
-  if(!res.ok) throw new Error('Failed to load '+path);
+  if(!res.ok) throw new Error('Failed to load ' + path);
   return await res.json();
+}
+
+// Détection du ratio pour appliquer .is-wide / .is-tall
+function flagAspect(img){
+  const set = () => {
+    const r = img.naturalWidth / img.naturalHeight;
+    if (!isFinite(r) || !r) return;
+    if (r >= 1.8) img.classList.add('is-wide');   // panoramique
+    else if (r <= 0.7) img.classList.add('is-tall'); // très vertical
+  };
+  if (img.complete) set();
+  else img.addEventListener('load', set, { once: true });
 }
 
 function pubCard(pub){
@@ -19,6 +31,11 @@ function pubCard(pub){
         ${pub.code ? `<a class="chip" href="${pub.code}">Code</a>` : ''}
       </div>
     </div>`;
+
+  // Taguer l'image selon son ratio
+  const img = el.querySelector('.pub-card__img');
+  if (img) flagAspect(img);
+
   return el;
 }
 
