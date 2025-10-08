@@ -1,16 +1,49 @@
-.btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:var(--brand);color:#F3F3E0;border:1px solid rgba(19,62,135,.25);box-shadow:var(--shadow)}
-.btn:hover{transform:translateY(-1px)}
-.btn i{font-size:14px}
-.btn-small{padding:8px 12px;font-size:14px}
+/* Publication card layout: 180px media + content */
+.pub-card{display:grid; grid-template-columns:180px 1fr; gap:16px; align-items:start; background:#fff8; border:1px solid rgba(19,62,135,.15); border-radius:14px; padding:14px; overflow:hidden}
 
-.actions{display:flex;gap:10px;flex-wrap:wrap}
-.links-row{display:flex;flex-wrap:wrap;gap:10px}
-.chip{font-size:12px;border:1px solid rgba(19,62,135,.25);padding:6px 10px;border-radius:999px;background:var(--powder); color:var(--brand)}
+/* Image media: 180 × 180, scale-down par défaut */
+.pub-card__img{
+  width:180px;
+  height:180px;
+  object-fit:scale-down; /* ne pas upscaler, réduit si nécessaire */
+  border-radius:12px;
+  border:1px solid rgba(19,62,135,.15);
+  background:var(--surface);
+  transition:object-fit .25s ease, transform .25s ease;
+}
 
-.list{display:grid; grid-template-columns:1fr; gap:20px}
-.pub-card{display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; background:#fff8; border:1px solid rgba(19,62,135,.15); border-radius:14px; padding:14px; overflow:hidden}
-.pub-card__img{width:120px;height:120px;object-fit:cover;border-radius:12px;border:1px solid rgba(19,62,135,.15)}
-.pub-card__title{margin:0 0 6px;font-size:18px}
-.pub-card__meta{font-size:14px;color:var(--muted);margin-bottom:8px}
-.pub-card__summary{font-size:15px;line-height:1.6}
-.pub-card__links{display:flex;gap:10px;flex-wrap:wrap}
+/* Variante 'cover' au survol (zoom léger, recadrage propre) */
+.pub-card:hover .pub-card__img{
+  object-fit:cover;
+  transform:translateY(-1px);
+}
+
+/* --- Gestion des formats extrêmes (ajoutée par JS) --- */
+
+/* Très large / panoramique → ratio auto (contain) sans crop */
+.pub-card__img.is-wide{
+  width:180px;
+  height:auto;          /* laisse la hauteur suivre le ratio natif */
+  aspect-ratio:auto;    /* utilise le ratio intrinsèque */
+  max-height:180px;     /* évite de dépasser le bloc */
+  object-fit:contain;   /* pas de crop en mode normal */
+}
+
+/* Au survol, passe en cover pour la prévisualisation */
+.pub-card:hover .pub-card__img.is-wide{
+  height:180px;         /* stabilise la zone de crop */
+  object-fit:cover;
+}
+
+/* (Optionnel) Très vertical → ratio auto aussi */
+.pub-card__img.is-tall{
+  width:auto;
+  height:180px;
+  aspect-ratio:auto;
+  max-width:180px;
+  object-fit:contain;
+}
+.pub-card:hover .pub-card__img.is-tall{
+  width:180px;
+  object-fit:cover;
+}
