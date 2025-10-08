@@ -122,9 +122,38 @@
     ]
   }
   </script>
+  <style>
+    /* Inspired by marineeuller.com: clean nav, big hero, work grid */
+    .main-nav{position:sticky;top:0;background:rgba(255,255,255,.65);backdrop-filter:blur(8px);border-bottom:1px solid rgba(0,0,0,.06);z-index:50}
+    .light .main-nav{background:rgba(255,255,255,.8)}
+    .main-nav .nav-inner{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+    .main-nav .brand{font-weight:700;letter-spacing:.8px;text-transform:uppercase;opacity:.9}
+    .main-nav .links{display:flex;gap:16px;align-items:center}
+    .btn.small{padding:8px 12px;font-size:14px}
+
+    /* Oversized display title */
+    .title h1{font-family:'Fraunces',serif;font-size:clamp(40px,9vw,72px);font-weight:800}
+
+    /* Work grid look */
+    .pub-list{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+    .publication{display:flex;flex-direction:column;overflow:hidden}
+    .publication img{width:100%;height:auto;aspect-ratio:4/3;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
+    .publication:hover img{transform:translateY(-1px) scale(1.01);transition:transform .25s ease}
+  </style>
 </head>
 
 <body>
+  <nav class="main-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="#top">LUCAS MATTIOLI</a>
+      <div class="links">
+        <a href="#publications">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="btn small" href="files/Lucas_Mattioli_CV.pdf" download>Download CV</a>
+      </div>
+    </div>
+  </nav>
   <div class="wrap">
     <!-- HERO -->
     <header class="hero" aria-labelledby="site-title">
