@@ -41,11 +41,9 @@
     a:hover{text-decoration:underline}
 
     /* Layout */
-    .wrap{max-width:1000px;margin:0 auto;padding:32px 20px 80px}
-    header.hero{
-      display:grid;grid-template-columns:96px 1fr auto;gap:20px;align-items:center;margin-bottom:28px;
-    }
-    .profile-pic{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+    .wrap{max-width:1100px;margin:0 auto;padding:32px 20px 80px}
+    header.hero{display:grid;grid-template-columns:112px 1fr auto;gap:24px;align-items:center;margin-bottom:28px;}
+    .profile-pic{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
     .title h1{font-size:clamp(26px,3vw,34px);margin:0;font-weight:700;letter-spacing:.2px}
     .subtitle{margin:6px 0 0;font-size:15px;color:var(--muted)}
 
@@ -65,24 +63,26 @@
     }
     .card{background:linear-gradient(180deg,var(--card),#0c1322);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
     .card h2{margin:0 0 12px;font-size:18px;letter-spacing:.3px}
-    .card p{color:#cbd5e1;line-height:1.65}
-    .about-blurb{color:#1e3a8a}
+    .card p{color:#cbd5e1;line-height:1.7;font-size:16.5px}
+    .card li{color:#cbd5e1;font-size:16px;line-height:1.7} 
+    .about-blurb{color:#1e3a8a;font-weight:600;letter-spacing:.1px}
 
     .tag{display:inline-block;padding:4px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:12px;color:#cfe9f8;background:#0a1a2a;margin-right:6px}
 
     /* Publications */
     .pub-list{display:grid;grid-template-columns:1fr;gap:14px}
-    .publication{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:14px}
-    .publication img{width:96px;height:96px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
-    .publication h3{margin:0 0 6px;font-size:16px}
-    .meta{font-size:13px;color:var(--muted);margin-bottom:8px}
+    .publication{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:16px}
+    .publication img{width:120px;height:120px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
+    .publication h3{margin:0 0 6px;font-size:18px}
+    .publication .summary{font-size:15px;line-height:1.6;color:var(--text);}
+    .meta{font-size:14px;color:var(--muted);margin-bottom:8px}
     .links{display:flex;flex-wrap:wrap;gap:10px}
     .chip{font-size:12px;border:1px solid rgba(255,255,255,.16);padding:6px 10px;border-radius:999px;background:#0b1828}
 
     /* Thesis block */
     .thesis-hero{display:grid;grid-template-columns:1fr;gap:16px;align-items:center}
-    @media (min-width:740px){ .thesis-hero{grid-template-columns: 1fr 220px} }
-    .thumb{width:100%;max-height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
+    @media (min-width:740px){ .thesis-hero{grid-template-columns: 1.2fr 260px; align-items:center } }
+    .thumb{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
 
     /* Footer */
     footer{margin-top:40px;color:var(--muted);font-size:13px;text-align:center}
@@ -90,6 +90,12 @@
     /* Light mode (auto via prefers-color-scheme, switchable by JS) */
     @media (prefers-color-scheme: light){
       :root{--bg:#f6f8fb;--bg-soft:#ffffff;--text:#0f172a;--muted:#475569;--card:#ffffff}
+      body{background: linear-gradient(180deg,#f6f8fb 0%, #eef2f7 100%)}
+      .btn{background:#eef3fb;color:#0f172a;border-color:#e2e8f0}
+      .publication{background:#f8fafc;border-color:#e2e8f0}
+      .chip{background:#eef3fb;border-color:#dbeafe}
+      .about-blurb{color:#0f1e5e}
+    }
       body{background: linear-gradient(180deg,#f6f8fb 0%, #eef2f7 100%)}
       .btn{background:#eef3fb;color:#0f172a;border-color:#e2e8f0}
       .publication{background:#f8fafc;border-color:#e2e8f0}
