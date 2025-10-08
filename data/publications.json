@@ -49,7 +49,7 @@
     "authors": "K. Kapusta, L. Mattioli, B. Addad, M. Lansari",
     "venue": "AI and Ethics (Journal), 2024",
     "summary": "Bridges ML watermarking and adversarial patches to analyze model ownership protection.",
-    "thumbnail": "img/WM_classification.png",
+    "thumbnail": "img/WM.png",
     "pdf": "https://hal.science/hal-04264033/document",
     "code": ""
   }
