@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Data Curation Matters: Model Collapse and Spurious Shift Performance Prediction from Training on Uncurated Text Embeddings",
+    "authors": "L. Mattioli, Y.A. Hadichou, S. Chaouche, M. Gonzalez",
+    "venue": "DataWorld @ ICML 2025 (Workshop)",
+    "summary": "Training on uncurated text embeddings derived from raw tabular data can trigger model collapse leading to degenerate single‑class predictions; we study detection and metrics.",
+    "thumbnail": "img/DCM.png",
+    "pdf": "https://hal.science/hal-04731376/document",
+    "code": ""
+  },
+  {
+    "title": "An End‑to‑End Method for Operationalizing Trustworthiness in AI‑based Critical Systems",
+    "authors": "K. Quintero, L. Mattioli, H. Sohier, J. Mattioli",
+    "venue": "PESARO 2025",
+    "summary": "End‑to‑end engineering method formalized within Confiance.ai for trustworthy ML‑based systems.",
+    "thumbnail": "img/E2E.png",
+    "pdf": "https://hal.science/hal-04731376/document",
+    "code": ""
+  },
+  {
+    "title": "Leveraging Tropical Algebra to Assess Trustworthy AI",
+    "authors": "J. Mattioli, M. Gonzalez, L. Mattioli, K. Quintero, H. Sohier",
+    "venue": "AAAI 2024",
+    "summary": "MCDA methodology using tropical algebra for trustworthiness assessment.",
+    "thumbnail": "img/tropical_algebra.png",
+    "pdf": "https://hal.science/hal-04731376/document",
+    "code": ""
+  },
+  {
+    "title": "A Black‑Box Watermarking Modulation for Semantic Segmentation Models",
+    "authors": "M. Lansari, L. Mattioli, B. Addad, P.-M. Raffi, M. Gonzalez, K. Kapusta",
+    "venue": "RegML @ NeurIPS 2024 (Workshop)",
+    "summary": "New black‑box watermarking technique tailored to semantic segmentation.",
+    "thumbnail": "img/WM_segmentation.png",
+    "pdf": "https://hal.science/hal-04731376/document",
+    "code": ""
+  },
+  {
+    "title": "A Black‑Box Watermarking Modulation for Object Detection Models",
+    "authors": "M. Lansari, L. Mattioli, B. Addad, P.-M. Raffi, K. Kapusta, M. Gonzalez, M. Ibn Khedher",
+    "venue": "AAAI 2024",
+    "summary": "Black‑box watermarking method for object detection models.",
+    "thumbnail": "img/WM_detection.png",
+    "pdf": "https://hal.science/hal-04726701v1/file/A_Black_Box_Watermarking_Modulation_for_Object_Detection_Models-2.pdf",
+    "code": ""
+  },
+  {
+    "title": "Protecting Ownership Rights of ML Models Using Watermarking in the Light of Adversarial Attacks",
+    "authors": "K. Kapusta, L. Mattioli, B. Addad, M. Lansari",
+    "venue": "AI and Ethics (Journal), 2024",
+    "summary": "Bridges ML watermarking and adversarial patches to analyze model ownership protection.",
+    "thumbnail": "img/WM_classification.png",
+    "pdf": "https://hal.science/hal-04264033/document",
+    "code": ""
+  }
+]

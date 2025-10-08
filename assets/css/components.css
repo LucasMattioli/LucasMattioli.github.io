@@ -1,0 +1,16 @@
+.btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:var(--brand);color:#F3F3E0;border:1px solid rgba(19,62,135,.25);box-shadow:var(--shadow)}
+.btn:hover{transform:translateY(-1px)}
+.btn i{font-size:14px}
+.btn-small{padding:8px 12px;font-size:14px}
+
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.links-row{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-size:12px;border:1px solid rgba(19,62,135,.25);padding:6px 10px;border-radius:999px;background:var(--powder); color:var(--brand)}
+
+.list{display:grid; grid-template-columns:1fr; gap:20px}
+.pub-card{display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; background:#fff8; border:1px solid rgba(19,62,135,.15); border-radius:14px; padding:14px; overflow:hidden}
+.pub-card__img{width:120px;height:120px;object-fit:cover;border-radius:12px;border:1px solid rgba(19,62,135,.15)}
+.pub-card__title{margin:0 0 6px;font-size:18px}
+.pub-card__meta{font-size:14px;color:var(--muted);margin-bottom:8px}
+.pub-card__summary{font-size:15px;line-height:1.6}
+.pub-card__links{display:flex;gap:10px;flex-wrap:wrap}
