@@ -49,15 +49,25 @@
       </section>
     </main>
     <section class="card" aria-labelledby="chess-title">
-    <h2 id="chess-title" class="section-title">Chess</h2>
-  
-    <!-- Viewer (ta meilleure/partie préférée) -->
-    <div id="chess-embed" class="chess-embed"></div>
-  
-    <!-- Photos -->
-    <div id="chess-photos" class="chess-grid"></div>
-  </section>
+  <h2 id="chess-title" class="section-title">Chess</h2>
 
+  <!-- LICHESS (Study) -->
+  <div class="chess-embed">
+    <!-- Remplace STUDY_ID et CHAPTER_ID par les tiens ; CHAPTER_ID est optionnel -->
+    <iframe
+      class="chess-frame"
+      src="https://lichess.org/study/embed/STUDY_ID/CHAPTER_ID?theme=auto&bg=auto"
+      title="My favorite game"
+      loading="lazy"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
+  </div>
+  <div class="chess-grid">
+      <!-- Remplace les src par tes photos -->
+      <img class="chess-photo" src="img/chess/photo1.jpg" alt="Playing chess at a café">
+      <img class="chess-photo" src="img/chess/photo2.jpg" alt="Tournament snapshot">
+    </div>
+  </section>
     <footer class="site-footer">
       © <span id="year"></span> Lucas Mattioli · <a href="#top" aria-label="Back to top">Back to top ↑</a>
     </footer>
