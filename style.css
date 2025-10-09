@@ -39,12 +39,12 @@ body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-    .profile-pic{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid #F3F3E0;box-shadow:0 0 0 3px #133E87}
+    .profile-pic{
+  width:112px; height:112px; border-radius:50%; object-fit:cover;
+  border:3px solid #F3F3E0;           /* fin liseré clair (espace) */
+  box-shadow:0 0 0 3px #133E87;       /* anneau bleu foncé autour */
+}
 
-    h1 {
-      margin: 0.2rem 0;
-      font-size: 1.8rem;
-    }
 
     .subtitle {
       font-size: 1rem;
