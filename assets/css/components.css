@@ -1,9 +1,20 @@
 .video-grid{display:grid; grid-template-columns:1fr; gap:18px}
 .video-card{display:flex; flex-direction:column; gap:10px}
 .video-title{font-size:16px; margin:0}
-.video-frame{width:100%; aspect-ratio:16/9; border:0; border-radius:12px; background:#000}
+.video-frame{
+  width:100%;
+  aspect-ratio:16/9;      /* garantit une hauteur visible */
+  border:0;
+  border-radius:12px;
+  background:#000;
+}
 .spotify-wrap{display:block}
-.spotify-embed{width:100%; height:352px; border:0; border-radius:12px}
+.spotify-embed{
+  width:100%;
+  height:352px;           /* embed Spotify : fixe une hauteur explicite */
+  border:0;
+  border-radius:12px;
+}
 
 .wrap{max-width:880px;margin:0 auto;padding:24px 16px 72px}
 
