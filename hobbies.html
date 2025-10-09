@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hobbies — YouTube & Spotify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+</head>
+<body>
+  <nav class="main-nav"><div class="nav-inner">
+    <a class="brand" href="index.html#top">LUCAS MATTIOLI</a>
+    <div class="links">
+      <a href="hobbies.html" aria-current="page">Hobbies</a>
+    </div>
+  </div></nav>
+  <div class="wrap">
+    <header class="hero">
+      <div class="title">
+        <h1>Hobbies</h1>
+        <p class="subtitle">YouTube videos & a Spotify playlist.</p>
+      </div>
+    </header>
+    <main class="single-column">
+      <section class="card">
+        <h2 class="section-title">YouTube</h2>
+        <div id="videos-list" class="video-grid"></div>
+      </section>
+      <section class="card">
+        <h2 class="section-title">Spotify Playlist</h2>
+        <div id="spotify-embed" class="spotify-wrap"></div>
+      </section>
+    </main>
+  </div>
+  <script src="assets/js/render-hobbies.js"></script>
+</body>
+</html>

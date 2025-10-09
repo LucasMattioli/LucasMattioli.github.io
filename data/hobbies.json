@@ -1,0 +1,17 @@
+{
+  "youtube": [
+    {
+      "title": "Solo Jazz — practice clip",
+      "id": "dQw4w9WgXcQ"
+    },
+    {
+      "title": "Lindy Hop — favorite routine",
+      "id": "tAGnKpE4NCI"
+    }
+  ],
+  "spotify": {
+    "type": "playlist",
+    "id": "YOUR_PLAYLIST_ID",
+    "title": "Practice Playlist"
+  }
+}

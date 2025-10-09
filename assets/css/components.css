@@ -1,49 +1,6 @@
-/* Publication card layout: 180px media + content */
-.pub-card{display:grid; grid-template-columns:180px 1fr; gap:16px; align-items:start; background:#fff8; border:1px solid rgba(19,62,135,.15); border-radius:14px; padding:14px; overflow:hidden}
-
-/* Image media: 180 × 180, scale-down par défaut */
-.pub-card__img{
-  width:180px;
-  height:180px;
-  object-fit:scale-down; /* ne pas upscaler, réduit si nécessaire */
-  border-radius:12px;
-  border:1px solid rgba(19,62,135,.15);
-  background:var(--surface);
-  transition:object-fit .25s ease, transform .25s ease;
-}
-
-/* Variante 'cover' au survol (zoom léger, recadrage propre) */
-.pub-card:hover .pub-card__img{
-  object-fit:cover;
-  transform:translateY(-1px);
-}
-
-/* --- Gestion des formats extrêmes (ajoutée par JS) --- */
-
-/* Très large / panoramique → ratio auto (contain) sans crop */
-.pub-card__img.is-wide{
-  width:180px;
-  height:auto;          /* laisse la hauteur suivre le ratio natif */
-  aspect-ratio:auto;    /* utilise le ratio intrinsèque */
-  max-height:180px;     /* évite de dépasser le bloc */
-  object-fit:contain;   /* pas de crop en mode normal */
-}
-
-/* Au survol, passe en cover pour la prévisualisation */
-.pub-card:hover .pub-card__img.is-wide{
-  height:180px;         /* stabilise la zone de crop */
-  object-fit:cover;
-}
-
-/* (Optionnel) Très vertical → ratio auto aussi */
-.pub-card__img.is-tall{
-  width:auto;
-  height:180px;
-  aspect-ratio:auto;
-  max-width:180px;
-  object-fit:contain;
-}
-.pub-card:hover .pub-card__img.is-tall{
-  width:180px;
-  object-fit:cover;
-}
+.video-grid{display:grid; grid-template-columns:1fr; gap:18px}
+.video-card{display:flex; flex-direction:column; gap:10px}
+.video-title{font-size:16px; margin:0}
+.video-frame{width:100%; aspect-ratio:16/9; border:0; border-radius:12px; background:#000}
+.spotify-wrap{display:block}
+.spotify-embed{width:100%; height:352px; border:0; border-radius:12px}
