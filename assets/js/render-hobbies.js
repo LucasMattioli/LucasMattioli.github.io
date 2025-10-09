@@ -155,4 +155,94 @@
       }
     }
   }
+  /* ===== Chess rendering ===== */
+function lichessEmbedFromUrl(url){
+  try{
+    const u = new URL(url);
+    const parts = u.pathname.split('/').filter(Boolean); // e.g. ["study","abc123","chapter1"] ou ["abcdef"]
+    // Study (avec ou sans chapitre)
+    if (parts[0] === "study"){
+      const id = parts[1] || "";
+      const chapter = parts[2] ? `/${parts[2]}` : "";
+      if (id) return `https://lichess.org/study/embed/${id}${chapter}?theme=auto&bg=auto`;
+    }
+    // Partie unique
+    if (parts.length === 1 && /^[A-Za-z0-9]{6,8}$/.test(parts[0])) {
+      return `https://lichess.org/embed/game/${parts[0]}?theme=auto&bg=auto`;
+    }
+    // Si l'URL est déjà un /embed/ on la garde
+    if (u.pathname.includes("/embed/")) return url;
+  }catch(_){}
+  return url; // fallback: laisse tel quel si déjà correct
+}
+
+function chesscomEmbedFromUrl(url){
+  try{
+    const u = new URL(url);
+    if (u.hostname.includes("chess.com")){
+      // Ex: https://www.chess.com/game/live/1234567890  → id = dernier segment numérique
+      const parts = u.pathname.split('/').filter(Boolean);
+      const last = parts[parts.length-1];
+      const id = /^\d+$/.test(last) ? last : u.searchParams.get("id");
+      if (id) return `https://www.chess.com/emboard?id=${id}`;
+    }
+    // Si on te donne déjà une URL emboard, garde-la.
+    if (u.hostname.includes("chess.com") && u.pathname.includes("/emboard")) return url;
+  }catch(_){}
+  return url;
+}
+
+function buildChessEmbed(embed){
+  if (!embed) return null;
+  // Laisse passer un HTML custom si tu le fournis un jour.
+  if (embed.html) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "chess-embed";
+    wrapper.innerHTML = embed.html;
+    return wrapper;
+  }
+  let src = (embed.url || "").trim();
+  if (!src) return null;
+
+  if ((embed.platform||"").toLowerCase().includes("lichess")){
+    src = lichessEmbedFromUrl(src);
+  } else if ((embed.platform||"").toLowerCase().includes("chess")){
+    src = chesscomEmbedFromUrl(src);
+  }
+  const iframe = document.createElement("iframe");
+  iframe.className = "chess-frame";
+  iframe.loading = "lazy";
+  iframe.setAttribute("allow", "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture");
+  iframe.src = src;
+  iframe.title = embed.title || "Chess viewer";
+  const wrap = document.createElement("div");
+  wrap.className = "chess-embed";
+  wrap.appendChild(iframe);
+  return wrap;
+}
+
+function renderChessSection(data){
+  const chess = data.chess || {};
+  // Embed
+  const embedWrap = document.getElementById("chess-embed");
+  if (embedWrap && chess.embed){
+    const el = buildChessEmbed(chess.embed);
+    if (el) embedWrap.appendChild(el);
+  }
+  // Photos
+  const grid = document.getElementById("chess-photos");
+  if (grid && Array.isArray(chess.photos)){
+    chess.photos.forEach(p => {
+      const a = document.createElement("a");
+      a.href = p.src; a.target = "_blank"; a.rel = "noopener";
+      const img = document.createElement("img");
+      img.className = "chess-photo";
+      img.src = p.src;
+      img.alt = p.alt || "Chess photo";
+      a.appendChild(img);
+      grid.appendChild(a);
+    });
+  }
+}
+
 })();
