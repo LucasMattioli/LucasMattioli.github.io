@@ -63,6 +63,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   <script src="assets/js/theme.js" defer></script>
   <script src="assets/js/main.js" defer></script>
+  <!-- Fallback JSON inline (utilisé en priorité). Remplace par tes liens -->
+<script id="hobbies-data" type="application/json">
+{
+  "youtube": [
+    { "title": "Exemple 1", "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+    { "title": "Exemple 2", "url": "https://youtu.be/tAGnKpE4NCI" }
+  ],
+  "spotify": {
+    "type": "playlist",
+    "url": "https://open.spotify.com/playlist/37i9dQZF1DX7ZuX2DBPm3V",
+    "title": "Practice Playlist"
+  }
+}
+</script>
+
+<!-- Laisse bien defer pour que la page soit prête quand le script s'exécute -->
+<script src="assets/js/render-hobbies.js" defer></script>
+
   <script src="assets/js/render-hobbies.js" defer></script>
 </body>
 </html>
