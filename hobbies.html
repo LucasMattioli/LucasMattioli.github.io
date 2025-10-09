@@ -48,26 +48,26 @@
         <div id="spotify-embed" class="spotify-wrap"></div>
       </section>
     </main>
-    <section class="card" aria-labelledby="chess-title">
+  <section class="card" aria-labelledby="chess-title">
   <h2 id="chess-title" class="section-title">Chess</h2>
 
-  <!-- LICHESS (Study) -->
   <div class="chess-embed">
-    <!-- Remplace STUDY_ID et CHAPTER_ID par les tiens ; CHAPTER_ID est optionnel -->
     <iframe
       class="chess-frame"
-      src="https://lichess.org/study/embed/fAmgls5C/rJt2wkka#1"
-      title="My favorite game"
+      src="https://lichess.org/study/embed/fAmgls5C/rJt2wkka#1?theme=auto&bg=auto"
+      title="Lichess study — chapter rJt2wkka"
       loading="lazy"
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
     </iframe>
+
+    <!-- Fallback si l’embed est bloqué (Firefox/extensions/etc.) -->
+    <p class="subtitle" style="margin-top:10px">
+      If the viewer doesn’t load, open it on Lichess:
+      <a href="https://lichess.org/study/fAmgls5C/rJt2wkka#1" target="_blank" rel="noopener">Open in a new tab</a>.
+    </p>
   </div>
-  <div class="chess-grid">
-      <!-- Remplace les src par tes photos -->
-      <img class="chess-photo" src="img/chess/photo1.jpg" alt="Playing chess at a café">
-      <img class="chess-photo" src="img/chess/photo2.jpg" alt="Tournament snapshot">
-    </div>
-  </section>
+</section>
+
     <footer class="site-footer">
       © <span id="year"></span> Lucas Mattioli · <a href="#top" aria-label="Back to top">Back to top ↑</a>
     </footer>
