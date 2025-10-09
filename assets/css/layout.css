@@ -1,8 +1,12 @@
 .wrap{max-width:880px;margin:0 auto;padding:24px 16px 72px}
-.single-column{display:grid; grid-template-columns:1fr; gap:28px}
+.single-column{display:grid;grid-template-columns:1fr;gap:28px}
 .main-nav{position:sticky;top:0;background:rgba(255,255,255,.6);backdrop-filter:blur(8px);border-bottom:1px solid rgba(0,0,0,.05);z-index:50}
 .nav-inner{max-width:880px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
 .brand{font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#133E87}
 .links{display:flex;gap:16px;align-items:center}
 .hero{display:flex; gap:16px; align-items:center; margin:10px 0 20px}
 .card{background:var(--powder); border:1px solid rgba(19,62,135,.18); border-radius:18px; padding:22px}
+
+.grid{display:grid;grid-template-columns:1fr;gap:28px}
+
+.profile-pic{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid #F3F3E0;box-shadow:0 0 0 3px #133E87}

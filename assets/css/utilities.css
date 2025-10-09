@@ -1,2 +1,10 @@
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .separator{height:1px;background:rgba(19,62,135,.15);margin:24px 0}
+
+.wrap{max-width:880px;margin:0 auto;padding:24px 16px 72px}
+
+.single-column{display:grid;grid-template-columns:1fr;gap:28px}
+
+.grid{display:grid;grid-template-columns:1fr;gap:28px}
+
+.profile-pic{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid #F3F3E0;box-shadow:0 0 0 3px #133E87}

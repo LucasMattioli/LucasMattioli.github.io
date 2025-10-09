@@ -1,42 +1,37 @@
-// assets/js/render-hobbies.js
 async function loadJSON(path){
   const res = await fetch(path);
   if(!res.ok) throw new Error('Failed to load ' + path);
   return await res.json();
 }
-
 function ytIdFrom(input){
   const s = (input||'').trim();
-  if (/^[A-Za-z0-9_-]{10,}$/.test(s)) return s;           // déjà un ID
+  if(/^[A-Za-z0-9_-]{10,}$/.test(s)) return s;
   try{
     const u = new URL(s);
-    if (u.hostname.includes('youtu.be')) {                 // https://youtu.be/ID
+    if(u.hostname.includes('youtu.be')){
       const id = u.pathname.replace(/^\//,''); if(id) return id;
     }
-    if (u.hostname.includes('youtube.com')) {
-      const v = u.searchParams.get('v'); if(v) return v;   // watch?v=ID
+    if(u.hostname.includes('youtube.com')){
+      const v = u.searchParams.get('v'); if(v) return v;
       const m = u.pathname.match(/\/(embed|shorts)\/([A-Za-z0-9_-]{10,})/);
-      if (m) return m[2];                                  // /embed/ID ou /shorts/ID
+      if(m) return m[2];
     }
-  }catch(e){ /* pas une URL */ }
+  }catch(e){}
   return s;
 }
-
 function spotifyEmbed(kind, value){
   const val = (value||'').trim();
-  // spotify:playlist:ID
   let m = val.match(/^spotify:(album|playlist|track|artist):([A-Za-z0-9]+)$/);
-  if (m) return `https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator`;
+  if(m) return `https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator`;
   try{
     const u = new URL(val);
-    if (u.hostname.includes('open.spotify.com')) {
+    if(u.hostname.includes('open.spotify.com')){
       const parts = u.pathname.split('/').filter(Boolean);
-      if (parts.length>=2) return `https://open.spotify.com/embed/${parts[0]}/${parts[1]}?utm_source=generator`;
+      if(parts.length>=2) return `https://open.spotify.com/embed/${parts[0]}/${parts[1]}?utm_source=generator`;
     }
-  }catch(e){ /* pas une URL */ }
+  }catch(e){}
   return `https://open.spotify.com/embed/${kind||'playlist'}/${val}?utm_source=generator`;
 }
-
 function videoCard(v){
   const el = document.createElement('div');
   el.className = 'video-card';
@@ -54,21 +49,14 @@ function videoCard(v){
     <h3 class="video-title">${v.title||''}</h3>`;
   return el;
 }
-
 (async ()=>{
   try{
-    // ⚠️ Si hobbies.html est à la racine: garder ce chemin.
-    // Si tu as mis hobbies.html dans un sous-dossier, adapte le chemin (../data/hobbies.json).
     const data = await loadJSON('data/hobbies.json');
-
-    // YouTube
     const list = document.getElementById('videos-list');
     (data.youtube||[]).forEach(v => list.appendChild(videoCard(v)));
-
-    // Spotify (accepte ID, URL web, ou URI "spotify:playlist:ID")
     const sp = data.spotify||{};
     const wrap = document.getElementById('spotify-embed');
-    if (sp.id || sp.url){
+    if(sp.id || sp.url){
       const url = spotifyEmbed(sp.type||'playlist', sp.id||sp.url);
       const iframe = document.createElement('iframe');
       iframe.className = 'spotify-embed';
