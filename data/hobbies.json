@@ -8,5 +8,15 @@
     "url": "https://open.spotify.com/playlist/3Xq4g2t7S4eLa9QFN9oiHp?si=f9N2vCdsQ-KmkewHCom39Q",
     "title": "Jason Lindy Hop Playlist"
   }
+  "chess": {
+    "embed": {
+      "platform": "lichess",
+      "url": "https://lichess.org/study/fAmgls5C", 
+      "title": "My favorite game"
+    },
+    "photos": [
+      { "src": "img/chess/photo1.jpg", "alt": "Playing chess at a café" },
+      { "src": "img/chess/photo2.jpg", "alt": "Tournament snapshot" }
+    ]
+  }
 }
-
