@@ -3,21 +3,42 @@
     if (document.readyState !== "loading") fn();
     else document.addEventListener("DOMContentLoaded", fn);
   }
+
+  function showError(where, msg) {
+    const el = document.getElementById(where);
+    if (!el) return;
+    el.insertAdjacentHTML("beforeend",
+      `<p class="subtitle" style="color:#c33;margin-top:8px;">[hobbies] ${msg}</p>`);
+  }
+
+  function getInlineJSON() {
+    const inline = document.getElementById("hobbies-data");
+    if (!inline) return null;
+    try { return JSON.parse(inline.textContent); }
+    catch (e) {
+      showError("videos-list", "JSON inline invalide.");
+      console.error("[hobbies] inline JSON invalid", e);
+      return null;
+    }
+  }
+
   async function loadJSON(path) {
+    // 1) Préférez l'inline si présent (marche même en file://)
+    const inline = getInlineJSON();
+    if (inline) return inline;
+
+    // 2) Sinon, tente le fetch (OK en prod GitHub Pages)
     try {
       const res = await fetch(path, { cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       return await res.json();
     } catch (e) {
-      console.warn("[hobbies] fetch failed, fallback to inline JSON:", e);
-      const inline = document.getElementById("hobbies-data");
-      if (inline) {
-        try { return JSON.parse(inline.textContent); }
-        catch (e2) { console.error("[hobbies] inline JSON invalid", e2); }
-      }
+      showError("videos-list", "Impossible de charger data/hobbies.json.");
+      console.error("[hobbies] fetch failed", e);
       throw e;
     }
   }
+
   function ytIdFrom(input) {
     const s = (input || "").trim();
     if (/^[A-Za-z0-9_-]{10,}$/.test(s)) return s;
@@ -34,6 +55,7 @@
     } catch (_) {}
     return s;
   }
+
   function youtubeEmbedUrl(urlOrId) {
     const raw = (urlOrId || "").trim();
     try {
@@ -52,9 +74,10 @@
         return `https://www.youtube.com/embed/${raw}?rel=0&modestbranding=1`;
       }
     }
-    const id = ytIdFrom(raw);
-    return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`;
+    const fallback = ytIdFrom(raw);
+    return `https://www.youtube.com/embed/${fallback}?rel=0&modestbranding=1`;
   }
+
   function spotifyEmbedUrl(kind, value) {
     const val = (value || "").trim();
     let m = val.match(/^spotify:(album|playlist|track|artist):([A-Za-z0-9]+)$/);
@@ -70,6 +93,7 @@
     } catch (_) {}
     return `https://open.spotify.com/embed/${kind || "playlist"}/${val}?utm_source=generator`;
   }
+
   function videoCard(v) {
     const el = document.createElement("div");
     el.className = "video-card";
@@ -77,19 +101,27 @@
     el.innerHTML = `
       <iframe class="video-frame"
         src="${src}"
-        title="${(v.title || "YouTube video").replace(/"/g, "&quot;) }"
+        title="${(v.title || "YouTube").replace(/"/g, "&quot;")}"
         loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-      </iframe>
+        allowfullscreen></iframe>
       <h3 class="video-title">${v.title || ""}</h3>`;
     return el;
   }
+
   ready(async () => {
     try {
       const data = await loadJSON("data/hobbies.json");
+
       const list = document.getElementById("videos-list");
-      if (list) (data.youtube || []).forEach(v => list.appendChild(videoCard(v)));
+      if (list) {
+        const arr = Array.isArray(data.youtube) ? data.youtube : [];
+        if (!arr.length) showError("videos-list", "Aucune vidéo dans le JSON.");
+        arr.forEach(v => list.appendChild(videoCard(v)));
+      } else {
+        console.warn("[hobbies] #videos-list introuvable");
+      }
+
       const wrap = document.getElementById("spotify-embed");
       if (wrap) {
         const sp = data.spotify || {};
@@ -103,15 +135,11 @@
           iframe.title = sp.title || "Spotify playlist";
           wrap.appendChild(iframe);
         } else {
-          wrap.innerHTML = '<p class="subtitle">Ajoute l’URL complète (ou l’ID) de ta playlist dans <code>data/hobbies.json</code>.</p>';
+          showError("spotify-embed", "Pas d’URL/ID Spotify dans le JSON.");
         }
       }
     } catch (e) {
-      console.error("[hobbies] fatal:", e);
-      const list = document.getElementById("videos-list");
-      if (list) list.innerHTML = '<p class="subtitle">Impossible de charger les vidéos. Vérifie le chemin de <code>data/hobbies.json</code>.</p>';
-      const wrap = document.getElementById("spotify-embed");
-      if (wrap) wrap.innerHTML = '<p class="subtitle">Impossible de charger la playlist Spotify.</p>';
+      // Déjà signalé via showError
     }
   });
 })();
