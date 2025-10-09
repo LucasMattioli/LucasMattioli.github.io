@@ -1,42 +1,32 @@
+// assets/js/render-hobbies.js
 (function () {
   function ready(fn) {
     if (document.readyState !== "loading") fn();
     else document.addEventListener("DOMContentLoaded", fn);
   }
 
-  function showError(where, msg) {
+  function show(where, html) {
     const el = document.getElementById(where);
     if (!el) return;
-    el.insertAdjacentHTML("beforeend",
-      `<p class="subtitle" style="color:#c33;margin-top:8px;">[hobbies] ${msg}</p>`);
+    el.insertAdjacentHTML("beforeend", html);
   }
 
+  // 1) Si un JSON inline <script id="hobbies-data" type="application/json"> existe, on le préfère.
   function getInlineJSON() {
-    const inline = document.getElementById("hobbies-data");
-    if (!inline) return null;
-    try { return JSON.parse(inline.textContent); }
+    const node = document.getElementById("hobbies-data");
+    if (!node) return null;
+    try { return JSON.parse(node.textContent); }
     catch (e) {
-      showError("videos-list", "JSON inline invalide.");
+      show("videos-list", `<p class="subtitle" style="color:#c33">[hobbies] JSON inline invalide.</p>`);
       console.error("[hobbies] inline JSON invalid", e);
       return null;
     }
   }
 
-  async function loadJSON(path) {
-    // 1) Préférez l'inline si présent (marche même en file://)
-    const inline = getInlineJSON();
-    if (inline) return inline;
-
-    // 2) Sinon, tente le fetch (OK en prod GitHub Pages)
-    try {
-      const res = await fetch(path, { cache: "no-store" });
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      return await res.json();
-    } catch (e) {
-      showError("videos-list", "Impossible de charger data/hobbies.json.");
-      console.error("[hobbies] fetch failed", e);
-      throw e;
-    }
+  // Construit une URL ABSOLUE en même origine, évite les surprises de basePath
+  function jsonURL() {
+    // hobbies.html est à la racine → on résout par rapport à l’URL courante (même origine)
+    return new URL("./data/hobbies.json?ts=" + Date.now(), window.location.href).toString();
   }
 
   function ytIdFrom(input) {
@@ -74,8 +64,8 @@
         return `https://www.youtube.com/embed/${raw}?rel=0&modestbranding=1`;
       }
     }
-    const fallback = ytIdFrom(raw);
-    return `https://www.youtube.com/embed/${fallback}?rel=0&modestbranding=1`;
+    const id = ytIdFrom(raw);
+    return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`;
   }
 
   function spotifyEmbedUrl(kind, value) {
@@ -111,35 +101,58 @@
 
   ready(async () => {
     try {
-      const data = await loadJSON("data/hobbies.json");
-
-      const list = document.getElementById("videos-list");
-      if (list) {
-        const arr = Array.isArray(data.youtube) ? data.youtube : [];
-        if (!arr.length) showError("videos-list", "Aucune vidéo dans le JSON.");
-        arr.forEach(v => list.appendChild(videoCard(v)));
-      } else {
-        console.warn("[hobbies] #videos-list introuvable");
+      // 1) JSON inline si présent (marche même en file://)
+      const inline = getInlineJSON();
+      if (inline) {
+        render(inline);
+        return;
       }
 
-      const wrap = document.getElementById("spotify-embed");
-      if (wrap) {
-        const sp = data.spotify || {};
-        if (sp.id || sp.url) {
-          const url = spotifyEmbedUrl(sp.type || "playlist", sp.url || sp.id);
-          const iframe = document.createElement("iframe");
-          iframe.className = "spotify-embed";
-          iframe.loading = "lazy";
-          iframe.setAttribute("allow", "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture");
-          iframe.src = url;
-          iframe.title = sp.title || "Spotify playlist";
-          wrap.appendChild(iframe);
-        } else {
-          showError("spotify-embed", "Pas d’URL/ID Spotify dans le JSON.");
-        }
+      // 2) Sinon, JSON externe en même origine (pas de CORS), no-cache
+      const url = jsonURL();
+      const res = await fetch(url, {
+        cache: "no-store",
+        mode: "same-origin",
+        credentials: "same-origin"
+      });
+      console.log("[hobbies] fetch", res.status, res.type, res.url);
+      if (!res.ok) {
+        show("videos-list", `<p class="subtitle" style="color:#c33">[hobbies] HTTP ${res.status} sur <code>${url}</code></p>`);
+        return;
       }
+      const data = await res.json();
+      render(data);
     } catch (e) {
-      // Déjà signalé via showError
+      console.error("[hobbies] fetch/parse error", e);
+      show("videos-list", `<p class="subtitle" style="color:#c33">[hobbies] Erreur de chargement/JSON. Voir console.</p>`);
     }
   });
+
+  function render(data){
+    // YouTube
+    const list = document.getElementById("videos-list");
+    const arr = Array.isArray(data.youtube) ? data.youtube : [];
+    if (list) {
+      if (!arr.length) show("videos-list", `<p class="subtitle">Aucune vidéo dans <code>data/hobbies.json</code>.</p>`);
+      arr.forEach(v => list.appendChild(videoCard(v)));
+    }
+
+    // Spotify
+    const wrap = document.getElementById("spotify-embed");
+    const sp = data.spotify || {};
+    if (wrap) {
+      if (sp.id || sp.url) {
+        const url = spotifyEmbedUrl(sp.type || "playlist", sp.url || sp.id);
+        const iframe = document.createElement("iframe");
+        iframe.className = "spotify-embed";
+        iframe.loading = "lazy";
+        iframe.setAttribute("allow", "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture");
+        iframe.src = url;
+        iframe.title = sp.title || "Spotify playlist";
+        wrap.appendChild(iframe);
+      } else {
+        show("spotify-embed", `<p class="subtitle">Pas d’URL/ID Spotify dans le JSON.</p>`);
+      }
+    }
+  }
 })();
