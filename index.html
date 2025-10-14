@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lucas Mattioli — PhD in AI</title>
+  <title>Lucas Mattioli — AI Researcher</title>
   <meta name="description" content="Lucas Mattioli — PhD candidate in Trustworthy AI and Foundation Models. Publications, thesis, and contact." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="assets/css/layout.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
   <link rel="stylesheet" href="assets/css/utilities.css" />
-  <meta property="og:title" content="Lucas Mattioli — PhD in AI" />
+  <meta property="og:title" content="Lucas Mattioli — AI Researcher" />
   <meta property="og:description" content="Trustworthy AI • Foundation Models • Vision under constrained data" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="img/portrait.jpg" />
@@ -34,14 +34,52 @@
     ]
   }
   </script>
+  <!-- Canonical & SEO -->
+<link rel="canonical" href="https://lucasmattioli.github.io/" />
+<meta name="description" content="PhD candidate in AI focusing on trustworthy multimodal foundation models (VLMs): PEFT, prompt learning, in-context learning, distillation. Publications, thesis, demos, and contact." />
+<meta name="theme-color" content="#133E87" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lucas Mattioli — PhD in AI">
+<meta property="og:description" content="Trustworthy multimodal models under data constraints. Publications, thesis & contact.">
+<meta property="og:url" content="https://lucasmattioli.github.io/">
+<meta property="og:image" content="https://lucasmattioli.github.io/img/portrait.jpg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lucas Mattioli — PhD in AI">
+<meta name="twitter:description" content="Trustworthy multimodal models under data constraints. Publications, thesis & contact.">
+<meta name="twitter:image" content="https://lucasmattioli.github.io/img/portrait.jpg">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Lucas Mattioli",
+  "image": "https://lucasmattioli.github.io/img/portrait.jpg",
+  "jobTitle": "PhD Candidate in AI",
+  "affiliation": [
+    {"@type": "Organization", "name": "ONERA"},
+    {"@type": "Organization", "name": "IRT SystemX"}
+  ],
+  "url": "https://lucasmattioli.github.io/",
+  "sameAs": [
+    "https://scholar.google.com/citations?user=Rso1Tu4AAAAJ",
+    "https://www.linkedin.com/in/lucas-mattioli/"
+  ]
+}
+</script>
+
 </head>
 <body>
   <nav class="main-nav" aria-label="Primary">
     <div class="nav-inner">
       <a class="brand" href="#top">LUCAS MATTIOLI</a>
       <div class="links">
-        <a href="#work">Work</a>
         <a href="#about">About</a>
+        <a href="#work">Work</a>
         <a href="#contact">Contact</a>
         <a href="hobbies.html">Hobbies</a>
         <a class="btn btn-small" href="cv.html">CV</a>
@@ -97,10 +135,12 @@
         </div>
       </section>
 
-      <section class="card" id="work" aria-labelledby="work-title">
-        <h2 id="work-title" class="section-title">Selected Work</h2>
-        <div id="publications-list" class="list"></div>
-      </section>
+
+      <section id="publications" class="wrap-block">
+      <h2 class="section-title">Publications</h2>
+      <div id="works"></div>
+    </section>
+
 
       <section class="card" id="news" aria-labelledby="news-title">
         <h2 id="news-title" class="section-title">News</h2>

@@ -5,7 +5,7 @@
     "venue": "DataWorld @ ICML 2025 (Workshop)",
     "summary": "Training on uncurated text embeddings derived from raw tabular data can trigger model collapse leading to degenerate single‑class predictions; we study detection and metrics.",
     "thumbnail": "img/DCM.png",
-    "pdf": "https://hal.science/hal-04731376/document",
+    "pdf": "https://arxiv.org/pdf/2506.17989",
     "code": ""
   },
   {
@@ -14,7 +14,7 @@
     "venue": "PESARO 2025",
     "summary": "End‑to‑end engineering method formalized within Confiance.ai for trustworthy ML‑based systems.",
     "thumbnail": "img/E2E.png",
-    "pdf": "https://hal.science/hal-04731376/document",
+    "pdf": "https://hal.science/hal-05074120v1/document",
     "code": ""
   },
   {
@@ -23,7 +23,7 @@
     "venue": "AAAI 2024",
     "summary": "MCDA methodology using tropical algebra for trustworthiness assessment.",
     "thumbnail": "img/tropical_algebra.png",
-    "pdf": "https://hal.science/hal-04731376/document",
+    "pdf": "https://hal.science/hal-04726695/document",
     "code": ""
   },
   {
@@ -32,7 +32,7 @@
     "venue": "RegML @ NeurIPS 2024 (Workshop)",
     "summary": "New black‑box watermarking technique tailored to semantic segmentation.",
     "thumbnail": "img/WM_segmentation.png",
-    "pdf": "https://hal.science/hal-04731376/document",
+    "pdf": "https://hal.science/hal-04731376v1/file/Confiance_AI___Watermarking_for_Semantic_Segmentation_Models-2.pdf",
     "code": ""
   },
   {
@@ -49,8 +49,8 @@
     "authors": "K. Kapusta, L. Mattioli, B. Addad, M. Lansari",
     "venue": "AI and Ethics (Journal), 2024",
     "summary": "Bridges ML watermarking and adversarial patches to analyze model ownership protection.",
-    "thumbnail": "img/WM.png",
-    "pdf": "https://hal.science/hal-04264033/document",
+    "thumbnail": "img/WM_classification.png",
+    "pdf": "https://link.springer.com/article/10.1007/s43681-023-00412-3",
     "code": ""
   }
 ]

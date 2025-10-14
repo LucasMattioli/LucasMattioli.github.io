@@ -23,3 +23,72 @@
 .grid{display:grid;grid-template-columns:1fr;gap:28px}
 
 .profile-pic{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid #F3F3E0;box-shadow:0 0 0 3px #133E87}
+
+/* Boutons “PDF” en pilule, auto pour tous les liens .pdf */
+a[href$=".pdf"], a[href*=".pdf?"], a[href*= "http"], a[href*= "pdf"], a[href*= ".com"]{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.5rem .9rem; border-radius:9999px;
+  background:#133E87; color:#F3F3E0; text-decoration:none; font-weight:600;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 1px 2px rgba(0,0,0,.06);
+  transition:transform .08s ease, box-shadow .2s ease, background .2s ease;
+}
+a[href$=".pdf"]:hover, a[href*=".pdf?"]:hover{
+  background:#0f316b; transform:translateY(-1px);
+  box-shadow:0 4px 10px rgba(0,0,0,.12);
+}
+a[href$=".pdf"]:focus-visible, a[href*=".pdf?"]:focus-visible{
+  outline:3px solid #CBDCEB; outline-offset:2px;
+}
+
+
+img { max-width: 800px; height: auto; }
+
+
+/* ===== Publications: une section par article ===== */
+.wrap-block{ margin-block: 28px; }
+
+.pubs-toc{
+  display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;
+}
+.pubs-toc .toc-link{
+  display:inline-block; padding:.35rem .7rem; border-radius:9999px;
+  background:#CBDCEB; color:#133E87; text-decoration:none; font-weight:600;
+  border:1px solid rgba(19,62,135,.15);
+}
+.pubs-toc .toc-link:hover{ filter:brightness(.95); }
+
+.pub-section{ display:grid; gap:14px; }
+.pub-header .pub-title{ margin:0 0 4px 0; font-size:1.15rem; }
+.pub-meta{ color:#608BC1; font-weight:500; display:flex; gap:.5rem; flex-wrap:wrap; }
+.pub-meta .sep{ opacity:.6; }
+
+.pub-body{ display:grid; grid-template-columns: 180px 1fr; gap:16px; align-items:start; }
+.pub-img{
+  max-width:800px; max-height:800px; object-fit: scale-down;
+  border-radius:12px; border:1px solid rgba(19,62,135,.15); background:#fff;
+}
+.pub-img.is-wide{ max-width:800px; height:auto; max-height:800px; object-fit:contain; }
+.pub-img.is-tall{ width:auto; max-width:800px; max-height:800px; object-fit:contain; }
+
+.pub-summary{ margin:0; color:#133E87; }
+
+.pub-links{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip.btn-pdf{
+  display:inline-flex; align-items:center; gap:.45rem;
+  padding:.5rem .9rem; border-radius:9999px;
+  background:#133E87; color:#F3F3E0; text-decoration:none; font-weight:600;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 1px 2px rgba(0,0,0,.06);
+  transition:transform .08s ease, box-shadow .2s ease, background .2s ease;
+}
+.chip.btn-pdf:hover{ background:#0f316b; transform:translateY(-1px); box-shadow:0 4px 10px rgba(0,0,0,.12); }
+
+/* Mobile: pile l’image au-dessus */
+@media (max-width: 640px){
+  .pub-body{ grid-template-columns: 1fr; }
+  .pub-img{ width:100%; height:auto; max-height:240px; object-fit:contain; }
+}
+
+#publications .pub-section + .pub-section{ margin-top:28px; }
+

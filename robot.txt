@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lucasmattioli.github.io/sitemap.xml
