@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adaptation Methods — ID Cards</title>
+  <meta name="description" content="ID cards summarizing adaptation methods for foundation models: PEFT, prompt learning, in-context learning, and distillation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/utilities.css" />
+  <link rel="stylesheet" href="assets/css/adaptation-methods.css" />
+
+  <link rel="canonical" href="https://lucasmattioli.github.io/adaptation-methods.html" />
+  <meta name="theme-color" content="#133E87" />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Adaptation Methods — ID Cards">
+  <meta property="og:description" content="ID cards summarizing adaptation methods for foundation models.">
+  <meta property="og:url" content="https://lucasmattioli.github.io/adaptation-methods.html">
+  <meta property="og:image" content="https://lucasmattioli.github.io/img/portrait.jpg">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="img/favicon.png" />
+</head>
+<body>
+  <nav class="main-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="index.html#top">LUCAS MATTIOLI</a>
+      <div class="links">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="hobbies.html">Hobbies</a>
+        <a class="btn btn-small" href="adaptation-methods.html" aria-current="page">ID Cards</a>
+        <a class="btn btn-small" href="cv.html">CV</a>
+        <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap" id="top">
+    <header class="hero">
+      <div class="title">
+        <h1>Adaptation Methods</h1>
+        <p class="subtitle">A set of ID cards summarizing the main strategies for adapting foundation models under tight data constraints — one card per method. Each card is a slide from my presentation, with a short note and links where relevant.</p>
+      </div>
+    </header>
+
+    <main class="single-column">
+      <section class="card" aria-labelledby="cards-title">
+        <h2 id="cards-title" class="section-title">Method Cards</h2>
+        <div id="idcards-list" class="idcards-grid"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      © <span id="year"></span> Lucas Mattioli · <a href="#top" aria-label="Back to top">Back to top ↑</a>
+    </footer>
+  </div>
+
+  <!-- Lightbox for enlarging a card -->
+  <div id="idcard-lightbox" class="idcard-lightbox" hidden>
+    <button class="idcard-lightbox__close" aria-label="Close">&times;</button>
+    <img class="idcard-lightbox__img" src="" alt="" />
+  </div>
+
+  <script src="assets/js/theme.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/render-idcards.js" defer></script>
+
+  <!--
+    HOW TO ADD A CARD
+    -----------------
+    Export each PowerPoint slide to an image (PNG) and place it in
+    img/adaptation_methods/ . Then add one entry below.
+
+    Fields:
+      "title"   (required) — method name shown under the slide
+      "img"     (required) — path to the slide image
+      "summary" (optional) — one or two sentences
+      "tags"    (optional) — array of short labels
+      "links"   (optional) — array of { "label": "...", "url": "..." }
+  -->
+  <script id="idcards-data" type="application/json">
+  {
+    "cards": [
+      {
+        "title": "CoOp",
+        "img": "img/adaptation_methods/coop.png",
+        "summary": "Replaces CLIP's hand-crafted prompt with learnable continuous context vectors, trained on few-shot labels while both encoders stay frozen. Large low-shot gains for a tiny parameter footprint, but overfits base classes and is sensitive to support-set quality.",
+        "tags": ["Prompt Learning", "PEFT", "IJCV 2022"],
+        "links": [
+          { "label": "Paper", "url": "https://link.springer.com/article/10.1007/s11263-022-01653-1" },
+          { "label": "Repo", "url": "https://github.com/KaiyangZhou/CoOp" }
+        ]
+      },
+      {
+        "title": "TaskRes",
+        "img": "img/adaptation_methods/taskres.png",
+        "summary": "Keeps CLIP's text-derived classifier frozen as a prior and learns an additive task-specific residual on top, decoupling prior knowledge from adaptation. More stable than prompt tuning across seeds, with strong base + new accuracy; the residual scales with class count.",
+        "tags": ["Residual Tuning", "CVPR 2023"],
+        "links": [
+          { "label": "Paper", "url": "https://openaccess.thecvf.com/content/CVPR2023/html/Yu_Task_Residual_for_Tuning_Vision-Language_Models_CVPR_2023_paper.html" },
+          { "label": "Repo", "url": "https://github.com/geekyutao/TaskRes" }
+        ]
+      },
+      {
+        "title": "Tip-Adapter",
+        "img": "img/adaptation_methods/tip-adapter.png",
+        "summary": "Builds a key-value cache from few-shot support features and one-hot labels, classifying a query by blending cache-retrieval logits with CLIP's zero-shot logits — no training required. Instant, strong baseline, though the cache grows with shots × classes and the mixing hyperparameters are sensitive.",
+        "tags": ["Cache Model", "Training-free", "ECCV 2022"],
+        "links": [
+          { "label": "Paper", "url": "https://arxiv.org/abs/2207.09519" },
+          { "label": "Repo", "url": "https://github.com/gaopengcuhk/Tip-Adapter" }
+        ]
+      },
+      {
+        "title": "Tip-Adapter-F",
+        "img": "img/adaptation_methods/tip-adapter-f.png",
+        "summary": "The same cache as Tip-Adapter, but the keys become learnable parameters fine-tuned with a few epochs of SGD. Warm-starting from support features converges far faster than CoOp and reaches the best accuracy in the Tip family, at the cost of losing the training-free appeal.",
+        "tags": ["Cache Model", "Fine-tuned", "ECCV 2022"],
+        "links": [
+          { "label": "Paper", "url": "https://arxiv.org/abs/2207.09519" },
+          { "label": "Repo", "url": "https://github.com/gaopengcuhk/Tip-Adapter" }
+        ]
+      },
+      {
+        "title": "CLIP-Adapter",
+        "img": "img/adaptation_methods/clip-adapter.png",
+        "summary": "Keeps CLIP frozen and appends a small two-layer bottleneck MLP on the image (or text) features, with a residual connection blending adapted and original features. Strong few-shot gains while the residual ratio preserves the CLIP prior; uses more parameters than prompt or residual tuning.",
+        "tags": ["Feature Adapter", "IJCV 2023"],
+        "links": [
+          { "label": "Paper", "url": "https://link.springer.com/article/10.1007/s11263-023-01891-x" },
+          { "label": "Repo", "url": "https://github.com/gaopengcuhk/CLIP-Adapter" }
+        ]
+      },
+      {
+        "title": "ProtoNet",
+        "img": "img/adaptation_methods/protonet.png",
+        "summary": "Represents each class by the mean (prototype) of its support features and classifies a query by nearest prototype. With frozen CLIP features it is a simple, training-free few-shot classifier with no parameters to learn; a single mean ignores intra-class spread and depends on the feature space and distance metric.",
+        "tags": ["Metric Learning", "Training-free", "NeurIPS 2017"],
+        "links": [
+          { "label": "Paper", "url": "https://arxiv.org/abs/1703.05175" },
+          { "label": "Repo", "url": "https://github.com/jakesnell/prototypical-networks" }
+        ]
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
